@@ -1,0 +1,77 @@
+set hlsearch
+set nu 
+set autoindent " 자동 들여쓰기
+set scrolloff=2
+set wildmode=longest,list
+set ts=8 "tag select
+set sts=8 "st select
+set sw=4 " 스크롤바 너비
+set autowrite 
+set autoread 
+set si
+set cindent 
+set bs=eol,start,indent
+set history=256
+set laststatus=2 " 상태바 표시 항상
+set paste " 붙여넣기 계단현상 없애기
+set shiftwidth=4 " 자동 들여쓰기 너비 설정
+set showmatch " 일치하는 괄호 하이라이팅
+set smartcase " 검색시 대소문자 구별
+set smarttab
+set smartindent
+set softtabstop=4
+set tabstop=4
+set ruler 
+set incsearch
+set fileencodings=utf-8,euc-kr
+set statusline=\ %<%l:%v\ [%P]%=%a\ %h%m%r\ %F\
+set tags=/root/wiringPi/tags
+
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "norm g`\"" |
+\ endif
+
+if has("syntax")
+ syntax on
+endif
+
+colorscheme monokai
+if has("cscope")
+	set cscopetag
+	set csto=0
+	if filereadable("cscope.out")
+		cs add cscope.out
+	elseif $CSCOPE_DB != ""
+		cs add $CSCOPE_DB
+	endif
+	set cscopeverbose
+
+	nmap <C-\>s :cs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>g :cs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>c :cs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>t :cs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>e :cs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-\>f :cs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-\>i :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-\>d :cs find d ^<C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@>s :scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>g :scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>c :scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>t :scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>e :scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@>f :scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@>i :scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@>d :scs find d <C-R>=expand("<cword>")<CR><CR>
+
+	nmap <C-@><C-@>s :vert scs find s <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>g :vert scs find g <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>c :vert scs find c <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>t :vert scs find t <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>e :vert scs find e <C-R>=expand("<cword>")<CR><CR>
+	nmap <C-@><C-@>f :vert scs find f <C-R>=expand("<cfile>")<CR><CR>
+	nmap <C-@><C-@>i :vert scs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+	nmap <C-@><C-@>d :vert scs find d <C-R>=expand("<cword>")<CR><CR>
+endif
+
