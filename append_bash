@@ -1,0 +1,2 @@
+export TERM=xterm-256color
+export PS1='${debian_chroot:+($debian_chroot)}\[\e[1;32;1m\]\w $(__git_ps1 "\[\033[1;33m\][%s] \[\033[00m\]") \e[0m\] \e[1;35;1m\]\n> \[\e[0m\]'
